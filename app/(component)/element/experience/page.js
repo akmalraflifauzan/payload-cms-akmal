@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 function Experience({}) {
   return (
@@ -56,9 +57,7 @@ function Achievements({}) {
     const fetchAchievements = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(
-          "http://payload-cms-akmal/api/achivement" // sesuaikan dengan slug 'achivement'
-        );
+        const response = await axios.get("/api/achivement");
         setAchievements(response.data.docs);
         setError(null);
       } catch (error) {
