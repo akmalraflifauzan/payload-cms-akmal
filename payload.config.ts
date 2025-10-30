@@ -3,13 +3,14 @@ import { s3Storage } from "@payloadcms/storage-s3";
 import sharp from "sharp";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { buildConfig } from "payload";
+import { Achivement } from "./src/collection/Achivement";
 
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
   editor: lexicalEditor(),
 
   // Define and configure your collections in this array
-  collections: [],
+  collections: [Achivement],
 
   // Payload Secret
   secret: process.env.PAYLOAD_SECRET || "",
@@ -24,15 +25,14 @@ export default buildConfig({
     },
   }),
   plugins: [
-    // Untuk koneksi ke Amazon S3
+    // Untuk koneksi ke Amazon S3 / S3-compatible storage (e.g. Supabase Storage)
     s3Storage({
       collections: {
-        media: {
-          prefix: "custom-prefix",
+        achivement: {
+          prefix: "achivement",
           signedDownloads: {
-            shouldUseSignedURL: ({ collection, filename, req }) => {
-              return filename.endsWith(".mp4");
-            },
+            shouldUseSignedURL: ({ collection, filename, req }) =>
+              typeof filename === "string" && filename.endsWith(".mp4"),
           },
         },
       },
@@ -43,10 +43,10 @@ export default buildConfig({
           secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || "",
         },
         region: process.env.S3_REGION || "",
-        // Opsi ini penting agar URL yang dihasilkan oleh Payload benar
         forcePathStyle: true,
+        // signatureVersion intentionally omitted (S3 client will default to v4)
       },
-      bucket: process.env.S3_BUCKET || "",
+      bucket: process.env.SUPABASE_BUCKET || process.env.S3_BUCKET || "",
     }),
   ],
   sharp,

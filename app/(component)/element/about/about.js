@@ -22,7 +22,7 @@ function About({}) {
       {/* About Me */}
       <div className="px-10 py-10">
         <h1 className="text-[30px] font-bold">About Me</h1>
-        <p>
+        <p className="mb-6">
           Hello, my name is Akmal. Im currently 20 years old and studying
           Information Engineering at Gadjah Mada University. I live in
           Indonesia, originally from Depok, West Java. I have an interest in
@@ -30,6 +30,12 @@ function About({}) {
           develop my skills by practicing continuously, working on various
           projects, and participating in competitions.
         </p>
+        <a
+          href="/experience"
+          className="inline-block bg-[#FF9844] text-white px-6 py-2 rounded-[15px] hover:bg-[#e88835] transition-colors"
+        >
+          View My Experience
+        </a>
       </div>
     </div>
   );
