@@ -31,10 +31,10 @@ function About({}) {
           projects, and participating in competitions.
         </p>
         <a
-          href="/experience"
+          href="/achievements"
           className="inline-block bg-[#FF9844] text-white px-6 py-2 rounded-[15px] hover:bg-[#e88835] transition-colors"
         >
-          View My Experience
+          View My Achievements
         </a>
       </div>
     </div>

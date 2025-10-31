@@ -8,4 +8,5 @@ const nextConfig: import("next").NextConfig = {
 
 // Make sure you wrap your `nextConfig`
 // with the `withPayload` plugin
+
 export default withPayload(nextConfig);

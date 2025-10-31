@@ -1,16 +1,18 @@
 import type { CollectionConfig } from "payload";
 
-export const Achivement: CollectionConfig = {
-  slug: "achivement",
+export const Achievements: CollectionConfig = {
+  slug: "achievements",
   access: {
     read: () => true,
-  },
-  upload: {
-    mimeTypes: ["image/*", "video/*", "application/pdf"],
   },
   fields: [
     {
       name: "title",
+      type: "text",
+      required: true,
+    },
+    {
+      name: "sub-title",
       type: "text",
       required: true,
     },
@@ -20,8 +22,9 @@ export const Achivement: CollectionConfig = {
       required: true,
     },
     {
-      name: "sub-title",
-      type: "text",
+      name: "foto sertif",
+      type: "upload",
+      relationTo: "sertif",
       required: true,
     },
   ],
