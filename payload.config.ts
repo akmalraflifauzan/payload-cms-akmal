@@ -33,8 +33,8 @@ export default buildConfig({
     // Untuk koneksi ke Amazon S3 / S3-compatible storage (e.g. Supabase Storage)
     s3Storage({
       collections: {
-        Achievements: {
-          prefix: "achievements/",
+        Sertif: {
+          prefix: "sertif/",
           // Disable signed downloads for public access
           disablePayloadAccessControl: true,
         },
