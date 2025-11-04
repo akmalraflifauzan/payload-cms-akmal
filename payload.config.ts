@@ -27,22 +27,14 @@ export default buildConfig({
     },
   }),
   plugins: [
-    // Untuk koneksi ke Amazon S3 / S3-compatible storage (e.g. Supabase Storage)
+    // Use S3-compatible storage (Supabase exposes an S3-compatible endpoint)
     s3Storage({
-      // NOTE: collection keys must be the collection SLUG (lowercase 'sertif')
+      // Map the collection slug for uploads
       collections: {
-        // Uploads used by the `sertif` collection
         sertif: {
           prefix: "sertif/",
-          // If you want files to be publicly accessible without signed URLs,
-          // set disablePayloadAccessControl: true
+          // Make files publicly accessible; set to false if you want signed URLs
           disablePayloadAccessControl: true,
-          signedDownloads: {
-            shouldUseSignedURL: ({ collection, filename, req }) => {
-              // example: serve signed URL only for video files
-              return typeof filename === 'string' && filename.endsWith(".mp4");
-            },
-          },
         },
       },
       config: {
